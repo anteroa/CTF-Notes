@@ -1,0 +1,12 @@
+Local File Inclusion is exploited when user input contains a certain path to the
+file which might be present on the server and will be include in the output.
+This can be exploited to read files and confidential data from the vulnerable
+system.
+
+The main cause of this type of vulnerability is improper sanitization of user
+input. LFI is common on PHP sites but not restricted to them.
+
+How to find a LFI vulnerability? Well, we look for request parameters that
+look like the following:
+
+  
