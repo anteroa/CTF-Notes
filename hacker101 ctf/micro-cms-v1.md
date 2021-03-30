@@ -5,9 +5,6 @@ id value, after trying to use a ' symbol to identify SQLi vulns on all the
 sites that are available, using it on the edit page provides the first Flag
 
 ![Flag 1 screenshot](screenshots/flag1shot.png)
-^FLAG^0b525cbc47e3b5b033b84f26b6c452eaeecceb8811dd0c05d7425ec0e8d0bf47$FLAG$
-
-
 
 **Flag 2:**
 
