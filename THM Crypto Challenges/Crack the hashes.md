@@ -27,19 +27,19 @@ purposes we will go ahead and crack these hashes with good old hashcat. Also, no
 
 Hash 1 command(MD5):
 
-`< hashcat -m 0 -a 0 48bb6e862e54f2a795ffc4e541caed4d /home/wordlist.txt >`
+` hashcat -m 0 -a 0 48bb6e862e54f2a795ffc4e541caed4d /home/wordlist.txt `
 
 Hash 2 command(SHA1):
 
-`< hashcat -m 0 -a 100 CBFDAC6008F9CAB4083784CBD1874F76618D2A97 /home/wordlist.txt >`
+` hashcat -m 0 -a 100 CBFDAC6008F9CAB4083784CBD1874F76618D2A97 /home/wordlist.txt `
 
 Hash 3 command(SHA256):
 
-`< hashcat -m 0 -a 1400 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 /home/wordlist.txt >`
+` hashcat -m 0 -a 1400 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 /home/wordlist.txt `
 
 Hash 4 command(bcrypt $2*$, Blowfish (Unix)):
 
-`< hashcat -m 3200 -a 0 hashes.txt /home/wordlist.txt >`
+` hashcat -m 3200 -a 0 hashes.txt /home/wordlist.txt `
 
 Hash 5 command(MD4):
 
