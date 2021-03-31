@@ -1,6 +1,7 @@
-<h1>Crack the hash</h1>
-
-
+<div>
+Crack the hash <br>
+![icon](screenshots/cth.jpeg)
+</div>
 <h2>Task 1</h2>
 <br>
 ![Task 1 screenshot](screenshots/hmcths1.png)
