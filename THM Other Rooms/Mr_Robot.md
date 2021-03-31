@@ -10,9 +10,11 @@ This hint should take anyone that has done a few ctfs somewhere fast,
 it is a suggestion to go check the robots.txt file of the site:
 
 If you haven' yet, go to browser an put the machine ip address, then
-after spending some unfruitful time watching Mr. Robot advertisements(/s) 
+after spending some unfruitful time watching Mr. Robot advertisements(/s)
 you can go ahead and check out the robots.txt of the site:
 
 `MACHINE_IP/robots.txt`
 
 Below is a screenshot of robots.txt:
+
+![robots screenshot](screenshots/robots.png)
