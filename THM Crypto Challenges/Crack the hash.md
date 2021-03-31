@@ -30,11 +30,11 @@ Hash 1 command(MD5):
 
 Hash 2 command(SHA1):
 
-` hashcat -m 0 -a 100 CBFDAC6008F9CAB4083784CBD1874F76618D2A97 /home/wordlist.txt `
+` hashcat -m 1000 -a 0 CBFDAC6008F9CAB4083784CBD1874F76618D2A97 /home/wordlist.txt `
 
 Hash 3 command(SHA256):
 
-` hashcat -m 0 -a 1400 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 /home/wordlist.txt `
+` hashcat -m 1400 -a 0 1C8BFE8F801D79745C4631D09FFF36C82AA37FC4CCE4FC946683D7B336B63032 /home/wordlist.txt `
 
 Hash 4 command(bcrypt $2*$, Blowfish (Unix)):
 
@@ -42,14 +42,30 @@ Hash 4 command(bcrypt $2*$, Blowfish (Unix)):
 
 Hash 5 command(MD4):
 
-`< hashcat -m 900 -a 0 279412f945939ba78ce0758d3fd83daa /home/wordlist.txt >`
+` hashcat -m 900 -a 0 279412f945939ba78ce0758d3fd83daa /home/wordlist.txt `
 
 **Task 2** <br>
 ![Task 2 screenshot](screenshots/task2.png)
 
 Hash | Identified Type | Salt | Rounds
 ------------ | ------------- | ------------ | ------------
-F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85 | MD5
+F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85 | SHA2-256
 1DFECA0C002AE40B8619ECF94819CC1B | NTLM
-$6$aReallyHardSalt$6WKUTqzq.UQQmrm0p/T7MPpMbGNnzXPMAXi4bJMl9be.cfi3/qxIf.hsGpS41BqMhSrHVXgMpdjS6xeKZAs02 | SHA-512, many rounds | aReallyHardSalt | 5
-e5d8870e5bdd26602cab8dbe07a942c8669e56d6 | SHA1
+$6$aReallyHardSalt$6WKUTqzq.UQQmrm0p/T7MPpMbGNnzXPMAXi4bJMl9be.cfi3/qxIf.hsGpS41BqMhSrHVXgMpdjS6xeKZAs02 | SHA512CRYPT, $6$ HASH | aReallyHardSalt | 5
+e5d8870e5bdd26602cab8dbe07a942c8669e56d6 | SHA1 | tryhackme
+
+Hash 1 command(SHA2-256):
+
+` hashcat -m 1400 -a 0 F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85 rockyou.txt `
+
+Hash 2 command(NTLM):
+
+` hashcat -m 1000 -a 0 1DFECA0C002AE40B8619ECF94819CC1B rockyou.txt `
+
+Hash 3 command(SHA-512, many rounds, salt: aReallyHardSalt , rounds: 5):
+
+` hashcat -m 1800 -a 0 hash3.txt rockyou.txt `
+
+Hash 4 command(SHA1-salted, salt: tryhackme):
+
+` hashcat -m 110 -a 0 hash4.txt `
