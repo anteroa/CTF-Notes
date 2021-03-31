@@ -1,6 +1,6 @@
 
 Crack the hash <br>
-![icon](screenshots/cth.png)
+![icon](screenshots/cth.png = 50 x 50)
 
 <h2>Task 1</h2>
 <br>
