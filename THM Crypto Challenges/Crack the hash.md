@@ -47,6 +47,10 @@ Hash 5 command(MD4):
 **Task 2** <br>
 ![Task 2 screenshot](screenshots/task2.png)
 
+The following table contains the necessary hash information to get the passwords,
+if you have a hard time wrapping your head around what is happening, google the
+hash type that is indicated inside the parenthesis, that should help:
+
 Hash | Identified Type | Salt | Rounds
 ------------ | ------------- | ------------ | ------------
 F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85 | SHA2-256
@@ -69,3 +73,6 @@ Hash 3 command(SHA-512, many rounds, salt: aReallyHardSalt , rounds: 5):
 Hash 4 command(SHA1-salted, salt: tryhackme):
 
 ` hashcat -m 110 -a 0 hash4.txt `
+
+NOTE: *I was unsure about the last one, so make sure you google the hash type
+and method for cracking if you have any trouble.*
