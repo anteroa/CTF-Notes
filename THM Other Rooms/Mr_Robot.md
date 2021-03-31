@@ -18,3 +18,10 @@ you can go ahead and check out the robots.txt of the site:
 Below is a screenshot of robots.txt:
 
 ![robots screenshot](screenshots/robots.png)
+
+As you can see there are two interesting pieces of information.
+The *key-1-of-3.txt* and *fsocity.dic* pages have been placed here to keep crawlers from indexing them.
+
+So,  lets check them out.
+
+First, *key-1-of-3.txt* : 
