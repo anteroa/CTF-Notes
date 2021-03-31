@@ -25,7 +25,7 @@ $2y$12$Dwt1BZj6pcyc3Dy1FWZ5ieeUznr71EeNkJkUlypTsgbX1H68wsRom | bcrypt $2*$, Blow
 There are several ways to get this done, and the easiest is to try all hashes on
 crackstation and see if there is a password for them already on the site. This has
 the benefit of being fast is not requiring any real cracking but, for education
-purposes we will go ahead and crack these hashes with good old hashcat. Also, not all hashes can be found on crackstation.
+purposes we will go ahead and crack these hashes with good old hashcat. Also, not all hashes can be found on crackstation/similar sites.
 
 Hash 1 command(MD5):
 
