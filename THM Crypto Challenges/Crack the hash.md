@@ -1,7 +1,7 @@
-**Crack the hash**
+#**Crack the hash**
 
 
-**Task 1** <br>
+##**Task 1** <br>
 ![Task 1 screenshot](screenshots/hmcths1.png)
 
 
@@ -44,7 +44,7 @@ Hash 5 command(MD4):
 
 ` hashcat -m 900 -a 0 279412f945939ba78ce0758d3fd83daa /home/wordlist.txt `
 
-**Task 2** <br>
+##**Task 2** <br>
 ![Task 2 screenshot](screenshots/task2.png)
 
 The following table contains the necessary hash information to get the passwords,
