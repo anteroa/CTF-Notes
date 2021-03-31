@@ -1,6 +1,6 @@
 
 Crack the hash <br>
-![icon](screenshots/cth.png){:height="25%" width="25%"}
+![icon](screenshots/cth.png height="25%" width="25%")
 
 <h2>Task 1</h2>
 <br>
