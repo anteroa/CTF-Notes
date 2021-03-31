@@ -1,6 +1,6 @@
 
-Crack the hash <br>
-![icon](screenshots/cth.png height=50 width="50")
+ <h1>Crack the hash :octopus: </h1>
+ <br>
 
 <h2>Task 1</h2>
 <br>
