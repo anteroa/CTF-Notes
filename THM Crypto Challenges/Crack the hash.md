@@ -49,6 +49,7 @@ Hash 5 command(MD4):
 
 <h2>Task 2</h2>
 <br>
+
 ![Task 2 screenshot](screenshots/task2.png)
 
 The following table contains the necessary hash information to get the passwords,
