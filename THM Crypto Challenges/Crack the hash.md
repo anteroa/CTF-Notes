@@ -1,7 +1,7 @@
-<div>
+
 Crack the hash <br>
 ![icon](screenshots/cth.png)
-</div>
+
 <h2>Task 1</h2>
 <br>
 ![Task 1 screenshot](screenshots/hmcths1.png)
