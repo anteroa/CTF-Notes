@@ -24,4 +24,6 @@ The *key-1-of-3.txt* and *fsocity.dic* pages have been placed here to keep crawl
 
 So,  lets check them out.
 
-First, *key-1-of-3.txt* : 
+First, *key-1-of-3.txt* :
+
+![key 1 screenshot](screenshots/k1of3.png)
