@@ -1,11 +1,10 @@
 **Crack the hash**
 
-Can you complete the level 1 tasks by cracking the hashes?
 
-
+**Task 1** <br>
 ![Task 1 screenshot](screenshots/hmcths1.png)
 
-**Task 1**
+
 
 These hashes are all different types at first glance, so I decided to identify
 the hash types before cracking them.
