@@ -1,6 +1,6 @@
 <div>
 Crack the hash <br>
-![icon](screenshots/cth.jpeg)
+![icon](screenshots/cth.png)
 </div>
 <h2>Task 1</h2>
 <br>
