@@ -125,4 +125,4 @@ nmap> !sh`
 
 And we are now root... that's it
 
-![key 3](key3.png)
+![key 3](screenshots/key3.png)
