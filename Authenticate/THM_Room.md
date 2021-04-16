@@ -6,7 +6,7 @@ In this case our MACHINE IP = 10.10.98.50
 After initial setup, we proceed with the following sections of this authentication
 vulnerability room.
 
-<h2>Dictionary Attack</h2>
+<h3>Dictionary Attack</h3>
 
 Simple yet deadly, this consists of capturing the login GET||POST request from
 the site that we are testing and using Burp Suite's intruder to attack the login
@@ -16,7 +16,7 @@ Although the room does not cover this, I believe it is important to understand a
 of mitigating dictionary attack on their authentication methods using something like
 gotchas and ip address restrictions.
 
-<h2>Re-Registration</h2>
+<h3>Re-Registration</h3>
 
 The vulnerability exists when there is a capability to re-register a user using
 a slightly different version of their name. If the input from the registration form
@@ -28,9 +28,11 @@ space an gain all of the real user's access.
 
 My explanation is probably trash so check the THM room for proper info? ...
 
-<h2>JSON Web Token</h2>
+<h3>JSON Web Token</h3>
 
 The following information is given in this THM room:
+
+<h2> Concept Introduction: </h3>
 
 JSON Web Token(JWT) is one of the commonly used methods for authorization. This is a
 kind of cookie that is generated using HMAC hashing or public/private keys. So unlike
@@ -60,3 +62,59 @@ Now to put all the 3 part together we base64 encode all of them separated by a d
 so it would look something like:
 
 `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`
+
+
+<h2>Exploitation</h2>
+
+If used properly  this is a very secure way of authorization but the problem is with using is "properly". A lot of developers misconfigure their system leaving it open to exploitation.
+
+Now one of the methods to exploit this is to perform a brute force/dictionary attack and find the secret used for encrypting the JWT token and then used that to generate new tokens. But here we are not going to do that, we are going to see a very amazing way of exploiting this.
+
+If you remember, in the Header section I said that the alg can be whatever the algorithm is used and also it can be None if no encryption is to be used. Now, this should not be used when the application is in production but again the problem of misconfiguration comes in and make the application vulnerable to this kind of attack. The attack is that an attacker can log in as low privilege user says guest and then get the JWT token for that user and then decode the token and edit the headers to use set alg value to None. This would mean that no encryption has to be used therefore the attacker wouldn't need to the secret used for encryption.
+
+
+<h2>Practical</h2>
+
+Let's see this method in practice. For this challenge visit the port 5000.
+
+﻿It is a very simple login page and in that, you can log in via two users: user and user2. Now first let's try to login with the credentials of user:user . To do so first enter those credentials then click on the Authenticate button and then enable the capture in burp suite and then click on the Go button. In the burp tab, you should see a request to /protected ﻿and there you'll see the JWT token.
+
+
+Now take this JWT token and then you can decode it part by part.
+
+So if we decode the first part, which will do: `{"typ":"JWT","alg":"HS256"}`
+and decoding the 2nd part, we will get:
+`{"exp":1586620929,"iat":1586620629,"nbf":1586620629,"identity":1}`
+
+If you try to decode the 3rd part then you'll get some gibberish. But that is okay
+we only need the first and the second part.
+
+Now if we notice the identity value that is probably being used to identify the user
+but if you'll just edit that then it won't work because as I said the 3rd part is
+encrypted. So to bypass this we will make changes in the header as well as the value
+of the identity.
+
+Encode the following string with base64 and that will be our first part
+
+`{"typ":"JWT","alg":"NONE"}`
+
+For the second part, we'll encode the following string:
+
+`{"exp":1586620929,"iat":1586620629,"nbf":1586620629,"identity":2}`
+
+Notice how we changed the value of identity from 1  to 2.
+
+Since we placed the alg value to None we don't have to add a 3rd part or the
+encrypted value so we can just put a dot(.) after 2nd part and leave it like that.
+So the final string would look like:
+
+`eyJ0eXAiOiJKV1QiLCJhbGciOiJOT05FIn0K.eyJleHAiOjE1ODY3MDUyOTUsImlhdCI6MTU4NjcwNDk5NSwibmJmIjoxNTg2NzA0OTk1LCJpZGVudGl0eSI6MH0K.`
+
+Now open the developer's tools in your browser and edit the stored cookie of the
+website to this new one and then just press the Go button and you'll notice that it
+will prompt "Welcome user2: guest2".
+In a similar manner, you can try to play and find other users on the website.
+
+
+This kind of misconfiguration in the authentication system is common and could be
+exploited to escalate privileges or steal information.
