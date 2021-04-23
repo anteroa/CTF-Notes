@@ -32,18 +32,20 @@ int main(int argc, char** argv)
                        "11110", "11111"};
     
     //This variable is a character arr that is used to store input 
-    //size can be adjusted as needed 
+    //size can be adjusted as needed, this is the text we need to decrypt 
     char input[54] = "2e313f2702184c5a0b1e321205550e03261b094d5c171f56011904";
      
     
     //The key length should be adjusted to whatever you need... 
     char key[5]="";
     
-    //
-    char encrypted_input[54] = "";
+    //Array of strings that is used to store the once encrypted messages
+    string once_enc[32] = {};
     
     for(int x=0; x<54; x++)
         {
+            
+            char once_encrypted_input[54] = "";
             key = keys[i];
             encrypted_input[x] = string[x] ^ key[x];
             cout << encrypted_input[x];
