@@ -1,0 +1,18 @@
+notes from 0day nahamsec livestream:
+
+Tools that are important:
+
+    -Commonspeak: https://github.com/pentester-io/commonspeak
+    -jwt_tool: https://github.com/ticarpi/jwt_tool
+    -NoSQLMap: https://github.com/codingo/NoSQLMap
+    -remenissions: https://github.com/guyinatuxedo/remenissions
+    -ropstar: https://github.com/xct/ropstar
+    -AutoRecon: https://github.com/Tib3rius/AutoRecon
+    -RustScan: https://github.com/RustScan/RustScan
+    -BurpSuite Pro(extensions): CO2, Joseph(json web token attacker),
+
+Things to do to get good:
+
+    -Finish Cyber Defense Introduction
+    -Pre Security
+    -Complete Beginner
